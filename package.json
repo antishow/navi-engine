@@ -1,0 +1,30 @@
+{
+  "name": "navi-engine",
+  "version": "1.0.0",
+  "exports": {
+    "./camera": "./engine/camera/index.js",
+    "./game-controller": "./engine/game-controller/index.js",
+    "./hidden": "./engine/hidden/index.js",
+    "./hooks": "./engine/hooks/index.js",
+    "./input": "./engine/input/helpers.js",
+    "./prefab": "./engine/prefab/index.js",
+    "./renderer": "./engine/renderer/index.js",
+    "./rigidbody": "./engine/rigidbody/index.js",
+    "./scene-manager": "./engine/scene-manager/index.js",
+    "./shadow": "./engine/shadow/index.js",
+    "./state-machine": "./engine/state-machine/index.js",
+    "./world": "./engine/world/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@rwh/keystrokes": "^1.5.6",
+    "cannon-es": "^0.20.0",
+    "cannon-es-debugger": "^1.0.0",
+    "three": "^0.175.0"
+  }
+}
