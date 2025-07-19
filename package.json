@@ -14,7 +14,7 @@
     "./scene-manager": "./engine/scene-manager/index.js",
     "./shadow": "./engine/shadow/index.js",
     "./state-machine": "./engine/state-machine/index.js",
-    "./world": "./engine/world/index.js",
+    "./world": "./engine/world/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
