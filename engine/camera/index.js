@@ -1,4 +1,5 @@
 import { addAction } from "../hooks";
+
 export let mainCamera = null;
 export const setMainCamera = (camera) => mainCamera = camera;
 
@@ -11,4 +12,3 @@ addAction(
     }
   }
 );
-

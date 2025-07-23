@@ -69,5 +69,3 @@ export const applyFilters = (hookName, content, ...args) => {
     return priorityCallbacks.reduce((priorityOutput, pFilter) => pFilter.callback(priorityOutput, ...args), output);
   }, content);
 }
-
-window.getHooks = () => ({ actions, filters });
