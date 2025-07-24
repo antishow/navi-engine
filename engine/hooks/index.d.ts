@@ -1,13 +1,13 @@
 declare function addAction(
     hookName: string,
     namespace: string,
-    callback: function,
+    callback: Function,
     priority: Number
 ): void;
 
 declare function removeAction(
     hookName: string,
-    namespace: Nullable<string>,
+    namespace: string | null,
 ): void;
 
 declare function removeAllActions(
@@ -17,7 +17,7 @@ declare function removeAllActions(
 declare function addSceneAction(
     hookName: string,
     namespace: string,
-    callback: function,
+    callback: Function,
     priority: Number
 ): void;
 
@@ -29,7 +29,7 @@ declare function doAction(
 declare function addFilter(
     hookName: string,
     namespace: string,
-    callback: function,
+    callback: Function,
     priority: Number,
 ): void;
 

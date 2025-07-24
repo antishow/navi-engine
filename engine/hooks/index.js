@@ -37,6 +37,8 @@ const removeAllHooks = (collection, hookName) => {
 export const addAction = (hookName, namespace, callback, priority = 10) => addHook(actions, hookName, namespace, callback, priority);
 export const removeAction = (hookName, namespace = null) => removeHook(actions, hookName, namespace);
 export const removeAllActions = (hookName) => removeAllHooks(actions, hookName);
+
+
 export const addSceneAction = (hookName, namespace, callback, priority = 10) => {
   addAction(hookName, namespace, callback, priority);
   document.addEventListener('scene.afterUnload', () => removeAction(hookName, namespace));

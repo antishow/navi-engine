@@ -1,6 +1,6 @@
 import { Camera } from "three";
 
-declare var mainCamera: Nullable<Camera>;
+declare var mainCamera: Camera | null;
 declare function setMainCamera(camera: Camera): void;
 
 export {

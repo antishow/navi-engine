@@ -1,4 +1,4 @@
-import { addAction, doAction } from "../hooks";
+import { addAction } from "../hooks";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import * as SkeletonUtils from "three/addons/utils/SkeletonUtils.js";
 
