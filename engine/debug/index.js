@@ -1,8 +1,10 @@
+import CannonDebugger from 'cannon-es-debugger';
 import GUI from 'lil-gui';
 import Stats from "three/addons/libs/stats.module.js";
 import { addAction, doAction } from '../hooks';
 
 import { rootScene } from '../scene-manager/';
+import { world } from '../world';
 
 const stats = new Stats();
 stats.domElement.style.position = 'absolute';
@@ -73,5 +75,34 @@ addAction(
       fogGui.add(fog, 'near', 0, 255);
       fogGui.add(fog, 'far', 0, 255);
     }, 10);
+  }
+);
+
+
+const worldGui = gui.addFolder('Physics');
+worldGui.close();
+
+addAction(
+  'gltf.load',
+  'gltf.load/addPhysicsGUI',
+  (gltf) => {
+    const physics = {
+      showCannonDebugger: false,
+    };
+
+    const cannonDebugger = new CannonDebugger(rootScene, world, ({
+      onInit: (body, mesh, shape) => mesh.visible = physics.showCannonDebugger,
+      onUpdate: (body, mesh, shape) => mesh.visible = physics.showCannonDebugger
+    }));
+
+    worldGui.controllersRecursive().forEach((C) => C.destroy());
+    worldGui.add(physics, 'showCannonDebugger');
+
+    addAction(
+      'gameController.afterUpdate',
+      'gameController.afterUpdate/updateSimulation',
+      () => cannonDebugger.update(),
+      11
+    );
   }
 );

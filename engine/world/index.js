@@ -1,12 +1,9 @@
-import { rootScene } from '../scene-manager';
 import { World, Vec3 } from 'cannon-es';
-import CannonDebugger from 'cannon-es-debugger';
 
 import { addAction } from '../hooks';
 import { setWorldBoundsFromObject } from './helpers';
 
 export const world = new World({ gravity: new Vec3(0, -9.82, 0) });
-const cannonDebugger = new CannonDebugger(rootScene, world);
 
 world.defaultContactMaterial.contactEquationStiffness = 1e9
 world.defaultContactMaterial.friction = 0.04;
@@ -31,7 +28,6 @@ const updateSimulation = () => {
 
     updateSimulationObject(B.gameObject)
   });
-  //cannonDebugger.update();
 }
 
 addAction(
