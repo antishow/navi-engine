@@ -8,8 +8,12 @@ const rendererProps = applyFilters(
     {
         powerPreference: 'high-performance',
         antialias: false,
-        stencil: false,
-        depth: false
+        /**
+         * TODO: postprocessing says depth: false is the usual setup, but this seems to break everything. WHY?
+         * 
+         * Not "BREAK", but seemingly renders everything in reverse order, and maybe flipped normals?
+         */
+        //depth: false,
     }
 );
 
