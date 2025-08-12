@@ -10,6 +10,7 @@ export const ambientLight = new AmbientLight();
 ambientLight.name = 'Ambient Light';
 
 let currentScene = null;
+let loading = false;
 
 export const unloadCurrentScene = () => {
   doAction('scene.beforeUnload', currentScene);
@@ -22,11 +23,19 @@ export const unloadCurrentScene = () => {
 }
 
 export const gotoScene = async (Scene) => {
-  const { url, prefabs, onLoad, onProgress, onError } = Scene;
+  if (loading) {
+    return;
+  }
+  const { name, url, prefabs, onLoad, onProgress, onError } = Scene;
+  console.log(`Go to Scene "${name}"`);
+
+  loading = true;
+
   await preloadPrefabs(prefabs);
 
   loader.load(url, (gltf) => {
     unloadCurrentScene();
+    loading = false;
 
     gltf.scene.name = Scene.name;
     gltf.scene.add(ambientLight);
