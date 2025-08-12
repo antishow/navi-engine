@@ -1,9 +1,8 @@
 import { Clock } from 'three';
 
 import { doAction } from '../hooks';
-import { renderer } from '../renderer/';
-import { rootScene } from '../scene-manager';
-import { mainCamera } from '../camera/'
+import { mainCamera } from '../camera';
+import { renderer, composer } from '../renderer/';
 
 import '../hidden';
 import '../prefab';
@@ -20,7 +19,7 @@ const doFrame = () => {
   doAction('gameController.afterUpdate', deltaTime);
 
   if (mainCamera) {
-    renderer.render(rootScene, mainCamera);
+    composer.render();
   }
 }
 

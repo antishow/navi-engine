@@ -1,7 +1,10 @@
-import { addAction } from "../hooks";
+import { addAction, doAction } from "../hooks";
 
 export let mainCamera = null;
-export const setMainCamera = (camera) => mainCamera = camera;
+export const setMainCamera = (camera) => {
+  doAction('camera.setMainCamera', camera);
+  mainCamera = camera;
+}
 
 addAction(
   'gltf.ready',
