@@ -64,7 +64,7 @@ export const removeAllFilters = (hookName) => removeAllHooks(filters, hookName);
 
 export const applyFilters = (hookName, content, ...args) => {
   if (!Array.isArray(filters[hookName])) {
-    return;
+    return content;
   }
 
   return filters[hookName].reduce((output, priorityCallbacks) => {
