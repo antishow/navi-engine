@@ -26,7 +26,7 @@ const params = {
   ExecDebugAction: () => doAction(params.DebugAction)
 };
 
-const gui = new GUI();
+export const gui = new GUI();
 
 const consoleGui = gui.addFolder('Console');
 consoleGui.add(params, 'LogScene');
