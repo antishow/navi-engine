@@ -5,6 +5,7 @@ import { addAction, doAction } from '../hooks';
 
 import { rootScene } from '../scene-manager/';
 import { world } from '../world';
+import { renderer } from '../renderer';
 
 const stats = new Stats();
 stats.domElement.style.position = 'absolute';
@@ -104,5 +105,27 @@ addAction(
       () => cannonDebugger.update(),
       11
     );
+  }
+);
+
+const rendererPanel = document.createElement('div');
+Object.assign(rendererPanel.style, {
+  fontFamily: 'monospace',
+  padding: '0.5em',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  backgroundColor: '#111',
+  whiteSpace: 'pre',
+  color: '#fff'
+});
+document.body.append(rendererPanel);
+
+addAction(
+  'gameController.update',
+  'gameController.update/rendererStats',
+  () => {
+    const { memory, render } = renderer.info;
+    rendererPanel.textContent = `memory: ${JSON.stringify(memory)}\r\nrender: ${JSON.stringify(render)}`;
   }
 );
