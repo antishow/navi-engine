@@ -12,12 +12,25 @@ ambientLight.name = 'Ambient Light';
 let currentScene = null;
 let loading = false;
 
+function disposeObject(sceneObject) {
+  while (sceneObject.children.length) {
+    disposeObject(sceneObject.children[sceneObject.children.length - 1]);
+  }
+
+  const { parent } = sceneObject;
+  if (!parent) {
+    return;
+  }
+
+  sceneObject.geometry?.dispose();
+  sceneObject.material?.dispose();
+  parent.remove(sceneObject);
+}
+
 export const unloadCurrentScene = () => {
   doAction('scene.beforeUnload', currentScene);
 
-  while (rootScene.children.length > 0) {
-    rootScene.remove(rootScene.children[0]);
-  }
+  disposeObject(rootScene);
 
   doAction('scene.afterUnload')
 }
