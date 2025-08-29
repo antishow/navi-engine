@@ -1,6 +1,6 @@
 declare interface StateTransition {
     to: State;
-    predicate: (...args:any) => bool;
+    predicate: (...args:any) => boolean;
 }
 
 declare interface State {
@@ -18,8 +18,8 @@ declare class StateMachine {
 
     setState(state: State): void;
     tick(...args:any): void;
-    addTransition(from: State, to: State, predicate: (...args:any) => bool): void;
-    addAnyTransition(to: State, predicate: (...args:any) => bool): void;
+    addTransition(from: State, to: State, predicate: (...args:any) => boolean): void;
+    addAnyTransition(to: State, predicate: (...args:any) => boolean): void;
 }
 
 export default StateMachine;

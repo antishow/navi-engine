@@ -4,8 +4,8 @@ declare const framePress: Set<string>;
 declare const frameRelease: Set<string>;
 declare const isDown: Set<string>;
 declare function getMovementInput(): Vector3;
-declare function wasPressedThisFrame(key: string): Boolean;
-declare function wasReleasedThisFrame(key: string): Boolean;
+declare function wasPressedThisFrame(key: string): boolean;
+declare function wasReleasedThisFrame(key: string): boolean;
 
 export {
     framePress,
