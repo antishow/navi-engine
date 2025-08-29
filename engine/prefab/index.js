@@ -8,7 +8,7 @@ const loader = new GLTFLoader();
 const preloadPrefab = (prefabName) => {
   const loadPrefab = new Promise((resolve, reject) => {
     loader.load(
-      `/assets/prefabs/${prefabName}.glb`,
+      `assets/prefabs/${prefabName}.glb`,
       (gltf) => {
         Prefabs[prefabName] = gltf;
 
