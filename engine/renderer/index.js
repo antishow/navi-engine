@@ -1,7 +1,18 @@
-import { EffectComposer, RenderPass } from "postprocessing";
 import { addAction, applyFilters } from "../hooks";
-import { WebGLRenderer } from "three";
 import { rootScene } from "../scene-manager";
+
+let EffectComposer, RenderPass, WebGLRenderer = null;
+
+addAction(
+    'navi.ready',
+    'navi.ready/rendererImport',
+    ({ THREE, Postprocessing }) => {
+        EffectComposer = Postprocessing.EffectComposer;
+        RenderPass = Postprocessing.RenderPass;
+        
+        WebGLRenderer = THREE.WebGLRenderer;
+    }
+)
 
 const rendererProps = applyFilters(
     'renderer.props',

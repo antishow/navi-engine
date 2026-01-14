@@ -1,8 +1,16 @@
-import { Vec3 } from 'cannon-es';
-
 import { addAction } from '../hooks';
 import { RigidBodyFactory } from './factory';
 import { world } from '../world/';
+
+let Vec3 = null;
+
+addAction(
+  'navi.ready',
+  'navi.ready/rigidBodyImport',
+  ({ CannonES }) => {
+    Vec3 = CannonES.Vec3;
+  }
+);
 
 addAction(
   'gameObject.load',

@@ -1,5 +1,16 @@
-import { Box3 } from "three";
-import { Body, Plane } from "cannon-es";
+import { addAction } from "../hooks";
+
+let Box3, Body, Plane = null;
+
+addAction(
+  'navi.ready',
+  'navi.ready/worldHelperImports',
+  ({ CannonES, THREE }) => {
+    Box3 = THREE.Box3;
+    Body = CannonES.Body;
+    Plane = CannonES.Plane;
+  }
+)
 
 export function setWorldBoundsFromObject(world, gameObject) {
   const worldBounds = new Box3().setFromObject(gameObject);

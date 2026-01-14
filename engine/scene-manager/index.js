@@ -1,16 +1,27 @@
-import { Scene, AmbientLight } from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-
 import { doAction } from '../hooks';
 import { preloadPrefabs } from "../prefab";
 
-const loader = new GLTFLoader();
-export const rootScene = new Scene();
-export const ambientLight = new AmbientLight();
-ambientLight.name = 'Ambient Light';
+let Scene, AmbientLight = null;
+
+let loader = null;
+export let rootScene = null;
+export let ambientLight = null;
 
 let currentScene = null;
 let loading = false;
+
+addAction(
+  'navi.ready',
+  'navi.ready/sceneManagerImport',
+  ({ THREE, GLTFLoader }) => {
+    Scene = THREE.Scene;
+    AmbientLight = THREE.AmbientLight;
+
+    loader = new GLTFLoader();
+    rootScene = new Scene();
+    ambientLight = new AmbientLight();
+  }
+)
 
 function disposeObject(sceneObject) {
   while (sceneObject.children.length) {
@@ -40,7 +51,7 @@ export const gotoScene = async (Scene) => {
     return;
   }
   const { name, url, prefabs, onLoad, onProgress, onError } = Scene;
-  console.log(`Go to Scene "${name}"`);
+  console.log(`Go to Scene "${name}"`, Scene);
 
   loading = true;
 

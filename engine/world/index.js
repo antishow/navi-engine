@@ -1,13 +1,21 @@
-import { World, Vec3 } from 'cannon-es';
-
 import { addAction } from '../hooks';
 import { setWorldBoundsFromObject } from './helpers';
 
-export const world = new World({ gravity: new Vec3(0, -9.82, 0) });
+export let world = null;
 
-world.defaultContactMaterial.contactEquationStiffness = 1e9
-world.defaultContactMaterial.friction = 0.04;
-world.defaultContactMaterial.contactEquationRelaxation = 4
+addAction(
+  'navi.ready',
+  'navi.ready/worldImport',
+  ({ CannonES }) => {
+    const { World, Vec3 } = CannonES;
+    
+    world = new World({ gravity: new Vec3(0, -9.82, 0) });
+
+    world.defaultContactMaterial.contactEquationStiffness = 1e9
+    world.defaultContactMaterial.friction = 0.04;
+    world.defaultContactMaterial.contactEquationRelaxation = 4
+  }
+)
 
 const updateSimulationObject = (gameObject) => {
   const { body } = gameObject;

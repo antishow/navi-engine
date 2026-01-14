@@ -1,29 +1,45 @@
 import { addAction } from '../hooks';
-import { checkKey } from '@rwh/keystrokes';
-import { Vector3 } from 'three';
 
 export const framePress = new Set();
 export const frameRelease = new Set();
 export const isDown = new Set();
 
+let _getMovementInput = () => {};
+
 export function getMovementInput() {
-  const input = new Vector3();
-
-  if (checkKey('w')) {
-    input.z -= 1;
-  }
-  if (checkKey('s')) {
-    input.z += 1;
-  }
-  if (checkKey('a')) {
-    input.x -= 1;
-  }
-  if (checkKey('d')) {
-    input.x += 1;
-  }
-
-  return input;
+  return _getMovementInput();
 }
+
+export const wasPressedThisFrame = (key) => framePress.has(key);
+export const wasReleasedThisFrame = (key) => frameRelease.has(key);
+
+addAction(
+  'navi.ready',
+  'navi.ready/importInputHelpers',
+  ({ Keystrokes, THREE }) => {
+    const { checkKey } = Keystrokes;
+    const { Vector3 } = THREE;
+
+    _getMovementInput = () => {
+      const input = new Vector3();
+
+      if (checkKey('w')) {
+        input.z -= 1;
+      }
+      if (checkKey('s')) {
+        input.z += 1;
+      }
+      if (checkKey('a')) {
+        input.x -= 1;
+      }
+      if (checkKey('d')) {
+        input.x += 1;
+      }
+
+      return input;
+    }
+  }
+);
 
 addAction(
   'gameController.afterUpdate',
@@ -52,7 +68,3 @@ addEventListener('keyup', (e) => {
   framePress.delete(code);
   frameRelease.add(code);
 });
-
-export const wasPressedThisFrame = (key) => framePress.has(key);
-export const wasReleasedThisFrame = (key) => frameRelease.has(key);
-

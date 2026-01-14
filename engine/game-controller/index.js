@@ -1,6 +1,4 @@
-import { Clock } from 'three';
-
-import { doAction } from '../hooks';
+import { addAction, doAction } from '../hooks';
 import { mainCamera } from '../camera';
 import { renderer, composer } from '../renderer/';
 
@@ -10,17 +8,25 @@ import '../rigidbody';
 import '../shadow';
 import '../world';
 
-const clock = new Clock();
-const doFrame = () => {
-  const deltaTime = clock.getDelta();
+addAction(
+  'navi.ready',
+  'navi.ready/startFrameLoop',
+  ({ THREE }) => {
+    const { Clock } = THREE;
 
-  doAction('gameController.beforeUpdate', deltaTime);
-  doAction('gameController.update', deltaTime);
-  doAction('gameController.afterUpdate', deltaTime);
+    const clock = new Clock();
+    const doFrame = () => {
+      const deltaTime = clock.getDelta();
 
-  if (mainCamera) {
-    composer.render();
+      doAction('gameController.beforeUpdate', deltaTime);
+      doAction('gameController.update', deltaTime);
+      doAction('gameController.afterUpdate', deltaTime);
+
+      if (mainCamera) {
+        composer.render();
+      }
+    }
+
+    renderer.setAnimationLoop(doFrame);
   }
-}
-
-renderer.setAnimationLoop(doFrame);
+);

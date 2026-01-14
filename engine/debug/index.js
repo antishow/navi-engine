@@ -1,8 +1,8 @@
 import CannonDebugger from 'cannon-es-debugger';
 import GUI from 'lil-gui';
 import Stats from "three/addons/libs/stats.module.js";
-import { addAction, doAction } from '../hooks';
 
+import { addAction, doAction } from '../hooks';
 import { rootScene } from '../scene-manager/';
 import { world } from '../world';
 import { renderer } from '../renderer';

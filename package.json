@@ -2,6 +2,7 @@
   "name": "navi-engine",
   "version": "1.0.0",
   "exports": {
+    "./engine": "./engine/index.js",
     "./camera": "./engine/camera/index.js",
     "./debug": "./engine/debug/index.js",
     "./game-controller": "./engine/game-controller/index.js",

@@ -1,7 +1,21 @@
-import { addFilter, applyFilters } from '../hooks';
+import { addAction, addFilter, applyFilters } from '../hooks';
 
-import { Vec3, Box, Sphere, Body, Cylinder } from 'cannon-es';
-import { Vector3, Box3 } from 'three';
+let Vec3, Box, Sphere, Body, Cylinder, Vector3, Box3 = null;
+
+addAction(
+  'navi.ready',
+  'navi.ready/rigidBodyFactoryImport',
+  ({ CannonES, THREE }) => {
+    Vec3 = CannonES.Vec3;
+    Box = CannonES.Box;
+    Sphere = CannonES.Sphere;
+    Body = CannonES.Body;
+    Cylinder = CannonES.Cylinder;
+
+    Vector3 = THREE.Vector3;
+    Box3 = THREE.Box3;
+  }
+)
 
 export const RigidBodyFactory = ({ gameObject }) => {
   const Rigidbody = JSON.parse(gameObject.userData.Rigidbody);
