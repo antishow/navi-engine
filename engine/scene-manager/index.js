@@ -1,4 +1,4 @@
-import { doAction } from '../hooks';
+import { addAction, doAction } from '../hooks';
 import { preloadPrefabs } from "../prefab";
 
 let Scene, AmbientLight = null;
