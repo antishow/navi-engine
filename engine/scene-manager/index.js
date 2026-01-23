@@ -50,8 +50,7 @@ export const gotoScene = async (Scene) => {
   if (loading) {
     return;
   }
-  const { name, url, prefabs, onLoad, onProgress, onError } = Scene;
-  console.log(`Go to Scene "${name}"`, Scene);
+  const { url, prefabs, onLoad, onProgress, onError } = Scene;
 
   loading = true;
 
