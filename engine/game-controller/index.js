@@ -1,12 +1,6 @@
 import { addAction, doAction } from '../hooks';
 import { mainCamera } from '../camera';
-import { renderer, composer } from '../renderer/';
-
-import '../hidden';
-import '../prefab';
-import '../rigidbody';
-import '../shadow';
-import '../world';
+import { renderer, composer } from '../renderer';
 
 addAction(
   'navi.ready',

@@ -1,5 +1,12 @@
 import { doAction } from "./hooks";
 
+import './game-controller';
+import './hidden';
+import './prefab';
+import './rigidbody';
+import './shadow';
+import './world';
+
 export function loadEngine() {
     doAction('navi.awake');
 
